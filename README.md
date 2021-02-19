@@ -64,6 +64,10 @@ kubectl run -it --rm --image=mysql:5.6 --restart=Never mysql-client -- mysql -h 
 ```
 $ kubectl create secret docker-registry ocirsecret --docker-server=<region-key>.ocir.io --docker-username='<tenancy-namespace>/<oci-username>' --docker-password='<oci-auth-token>' --docker-email='<email-address>'
 ```
+- Edit the flask-mysql.yaml file to the correct docker image name
+    ```
+    iad.ocir.io/<your-tenancy>/<your-registry>/<your-image-name>:tag
+    ```
 - Deploy the App and Service
 ```
 $ kubectl apply -f flask-mysql-svc.yaml -f flask-mysql.yaml
