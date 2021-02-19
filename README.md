@@ -76,8 +76,30 @@ $ kubectl apply -f flask-mysql-svc.yaml -f flask-mysql.yaml
 ```
 $ kubectl get svc
 ```
-- Test the output
-  - Open Port 80 on the LB Public Subnet's Security List
+## Test the output
+- Open Port 80 on the LB Public Subnet's Security List
+- Test the Pod using `kubectl exec`
+```
+$ kubectl exec <pod-name> -- curl  -s localhost/users | jq .
+[
+  {
+    "firstname": "john",
+    "id": 1,
+    "lastname": "doe"
+  },
+  {
+    "firstname": "jane",
+    "id": 2,
+    "lastname": "doe"
+  },
+  {
+    "firstname": "bob",
+    "id": 3,
+    "lastname": "smith"
+  }
+]
+```
+- Curl the Public Load Balancer IP
 ```
 curl <lb-public-ip>/users
 ```
