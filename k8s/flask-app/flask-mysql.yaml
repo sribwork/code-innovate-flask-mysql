@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-mysql
+  template:
+    metadata:
+      labels:
+        app: flask-mysql
+    spec:
+      containers:
+      - name: flask-mysql
+        image: iad.ocir.io/orasenatdoracledigital01/flask-mysql-proj/flask-mysql-app:v2
+        imagePullPolicy: Always
+        env:
+        - name: MYSQL_HOST
+          value: 'mysql'
+        - name: MYSQL_USER
+          value: 'root'
+        - name: MYSQL_PASSWORD
+          value: 'oracle!2345#'
+        - name: MYSQL_DB
+          value: 'test_db'
+        ports:  
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 300m
+            memory: 300Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+      imagePullSecrets:
+      - name: ocirsecret
+
