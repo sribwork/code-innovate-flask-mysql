@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: flask-mysql
-        image: iad.ocir.io/orasenatdoracledigital01/flask-mysql-proj/flask-mysql-app:v2
+        image: iad.ocir.io/orasenatdoracledigital01/flask-mysql-proj/flask-mysql-app:v1
         imagePullPolicy: Always
         env:
         - name: MYSQL_HOST
